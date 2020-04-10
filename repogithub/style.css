@@ -1,0 +1,263 @@
+/**
+* App getRepo
+*
+* HTML/CSS/JS - App para recurar repositórios
+* no GitHub de um determinado usuário
+*
+* @project App getRepo github with Javascript
+* @version 1.0
+* @author @denilsoncamara
+*
+*/
+
+:root {
+    --color-primary: #149fad;
+    --color-secondary: #efefef;
+    --space-default: 30px;
+}
+
+/**
+* Estilos Globais
+*
+* @section global reset
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--color-secondary);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 62.5%;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+input,
+button {
+    outline: none;
+}
+
+.container {
+    margin: 60px auto;
+    max-width: 460px;
+    padding: 0 var(--space-default);
+}
+
+@media screen and (min-width: 500px) {
+    .container {
+        padding: 0;
+    }
+}
+
+/**
+* Estidos do Header
+* 
+* @header
+*/
+
+.header {
+    border-radius: 4px 4px 0 0;
+    color: #fff;
+    background: var(--color-primary);
+    text-align: center;
+}
+
+.header > h1 {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    padding: 40px 0;
+}
+
+@media screen and (min-width: 300px) {
+    .header > h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/**
+* Estilos do App
+*
+* @main
+*/
+
+.app {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    border-radius: 4px;
+    flex-direction: column;
+    margin-bottom: var(--space-default);
+    padding: calc(var(--space-default) / 2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (min-width: 300px) {
+    .app {
+        padding: var(--space-default);
+    }
+}
+
+.app > input[type="text"] {
+    border: 1px solid #dbdbdb;
+    width: 100%;
+    border-radius: 3px;
+    padding: 10px 20px;
+    margin-bottom: var(--space-default);
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    font-weight: 100;
+}
+
+@media screen and (min-width: 300px) {
+    .app > input[type="text"] {
+        font-size: 1.4rem;
+        padding: 15px 10px;
+    }
+}
+
+.app > button {
+    border: none;
+    padding: 10px;
+    width: 100px;
+    margin-bottom: var(--space-default);
+    background: var(--color-primary);
+    border-radius: 25px;
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0 5px 20px rgba(94, 87, 134, .2);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 300px) {
+    .app > button {
+        font-size: 1.4rem;
+        width: 200px;
+        padding: 15px;
+    }
+}
+
+.app > .loading {
+    max-width: 100px;
+    color: transparent;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+
+.app > .loading::before {
+    content: "";
+    width: 100%;
+    border-radius: 10px;
+    background: rgb(230, 230, 230);
+    display: block;
+    height: 10px;
+}
+
+.app > .loading::after {
+    content: "";
+    width: 10px;
+    border-radius: 10px;
+    animation: loading 2s infinite alternate;
+    display: block;
+    background: rgba(255, 255, 255, 1);
+    height: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@keyframes loading {
+    10% {
+        left: 0;
+        background: rgba(255, 255, 255, 1);
+    }
+
+    50% {
+        background: rgba(255, 255, 255, .5);
+    }
+
+    100% {
+        left: 92%;
+        background: rgba(255, 255, 255, 1);
+    }
+}
+
+.app > #info-user {
+    color: #666;
+    text-align: center;
+    margin-bottom: var(--space-default);
+}
+
+.app > #info-user img {
+    border-radius: 50%;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.app > #info-user > h2 {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.app > #info-user > h3 {
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+body .list-item,
+body .error {
+    opacity: 0;
+    transition: .3s opacity linear;
+}
+
+body.show-list .list-item,
+body.show-error .error {
+    opacity: 1;
+}
+
+.app > .list-item {
+    width: 100%;
+    list-style: none;
+}
+
+.list-item > .item {
+    font-size: 1.4rem;
+    padding: 10px;
+    border-radius: 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-item > .item:nth-child(odd) {
+    background: var(--color-secondary);
+}
+
+.list-item > .item > a {
+    color: #666;
+    text-decoration: none;
+    transition: .3s color linear;
+}
+
+.list-item > .item > a:hover {
+    color: var(--color-primary);
+}
+
+/**
+* Estilos do Footer
+*
+* @footer
+*/
+
+.footer {
+    text-align: center;
+    color: var(--color-primary);
+    font-size: 1.4rem;
+}

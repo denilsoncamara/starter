@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="App de exemplo para retornar repositórios do Github do curso de Javascript da Rocketseat">
+    <title>App getRepo Github</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Consultar Repositórios</h1>
+        </header>
+        <main class="app" id="app">
+            <input type="text" placeholder="Usuário do Github">
+            <button>Consultar</button>
+            <div id="info-user"></div>
+            <ul class="list-item"></ul>
+            <p class="error"></p>
+            <p class="loading"></p>
+        </main>
+        <footer class="footer">
+            <p>@2020 Desenvolvido por @denilsoncamara</p>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
