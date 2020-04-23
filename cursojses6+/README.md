@@ -432,3 +432,21 @@ console.log(calc.mult(2, 3)); // 6
 ```
 
 ## Async/await
+
+Trabalhando com requisição assíncrona dentro do javascript
+
+```
+const minhaPromise = () => new Promise((resolve, reject) => {
+    setTimeout(() => { resolve('OK') }, 2000);
+})
+
+async function executaPromise() {
+    console.log(`${await minhaPromise()} 2s`);
+
+    console.log(`${await minhaPromise()} 4s`);
+
+    console.log(`${await minhaPromise()} 6s`);
+}
+
+executaPromise();
+```

@@ -19,6 +19,7 @@ class App {
         if (loading === true) {
             let loadingEl = document.createElement('span');
             loadingEl.appendChild(document.createTextNode('Carregando...'));
+            loadingEl.setAttribute('class', 'loading');
             loadingEl.setAttribute('id', 'loading');
 
             this.formEl.appendChild(loadingEl);

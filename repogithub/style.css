@@ -1,8 +1,8 @@
 /**
 * App getRepo
 *
-* HTML/CSS/JS - App para recurar repositórios
-* no GitHub de um determinado usuário
+* HTML/CSS/JS - App para listar repositórios
+* de um determinado usuário no GitHub
 *
 * @project App getRepo github with Javascript
 * @version 1.0
@@ -87,7 +87,7 @@ button {
 .app {
     background: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    border-radius: 4px;
+    border-radius: 0 0 4px 4px;
     flex-direction: column;
     margin-bottom: var(--space-default);
     padding: calc(var(--space-default) / 2);

@@ -1,37 +1,272 @@
 /**
 * App getRepo
 *
-* HTML/CSS/JS - Atualização do app para recurar
-* repositórios no GitHub de um determinado usuário
+* HTML/CSS/JS - App para buscar, armazenar
+* e listar repositórios do Github
 *
-* @project Update App getRepo Github
+* @project App Add Repos
 * @version 1.0
 * @author @denilsoncamara
 *
 */
 
-ul {
-    list-style: none;
+:root {
+    --color-primary: #2588da;
+    --color-secondary: #efefef;
+    --space-default: 20px;
+}
+
+/**
+* Estilos Globais
+*
+* @section global reset
+*/
+
+* {
     margin: 0;
     padding: 0;
-    font-family: "Open sans";
+    box-sizing: border-box;
 }
 
-li {
-    margin-top: 20px;
+html {
+    background: var(--color-secondary);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 62.5%;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
 }
 
-img {
+input,
+button {
+    outline: none;
+}
+
+.container {
+    margin: 60px auto;
+    max-width: 460px;
+    padding: 0 var(--space-default);
+}
+
+@media screen and (min-width: 500px) {
+    .container {
+        padding: 0;
+    }
+}
+
+/**
+* Estidos do Header
+* 
+* @header
+*/
+
+.header {
+    border-radius: 4px 4px 0 0;
+    color: #fff;
+    background: var(--color-primary);
+    text-align: center;
+}
+
+.header > h1 {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    padding: 40px 0;
+}
+
+@media screen and (min-width: 300px) {
+    .header > h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/**
+* Estilos do App
+*
+* @main
+*/
+
+.app {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    border-radius: 0 0 4px 4px;
+    margin-bottom: var(--space-default);
+    padding: calc(var(--space-default) / 2);
+}
+
+.app > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (min-width: 300px) {
+    .app {
+        padding: var(--space-default);
+    }
+}
+
+.app > form > input[type="text"] {
+    border: 1px solid #dbdbdb;
+    width: 100%;
+    border-radius: 3px;
+    padding: 10px 20px;
+    margin-bottom: var(--space-default);
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    font-weight: 100;
+}
+
+@media screen and (min-width: 300px) {
+    .app > form > input[type="text"] {
+        font-size: 1.4rem;
+        padding: 15px 10px;
+    }
+}
+
+.app > form > button {
+    border: none;
+    padding: 10px;
+    width: 100px;
+    margin-bottom: var(--space-default);
+    background: var(--color-primary);
+    border-radius: 25px;
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0 5px 20px rgba(94, 87, 134, .2);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 300px) {
+    .app > form > button {
+        font-size: 1.4rem;
+        width: 200px;
+        padding: 15px;
+    }
+}
+
+.app > form > .loading {
+    max-width: 100px;
+    color: transparent;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+
+.app > form > .loading::before {
+    content: "";
+    width: 100%;
+    border-radius: 10px;
+    background: rgb(230, 230, 230);
+    display: block;
+    height: 10px;
+}
+
+.app > form > .loading::after {
+    content: "";
+    width: 10px;
+    border-radius: 10px;
+    animation: loading 2s infinite alternate;
+    display: block;
+    background: rgba(255, 255, 255, 1);
+    height: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@keyframes loading {
+    10% {
+        left: 0;
+        background: rgba(255, 255, 255, 1);
+    }
+
+    50% {
+        background: rgba(255, 255, 255, .5);
+    }
+
+    100% {
+        left: 92%;
+        background: rgba(255, 255, 255, 1);
+    }
+}
+
+.app > #info-user {
+    color: #666;
+    text-align: center;
+    margin-bottom: var(--space-default);
+}
+
+.app > #info-user img {
+    border-radius: 50%;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.app > #info-user > h2 {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.app > #info-user > h3 {
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+body .error {
+    opacity: 0;
+    transition: .3s opacity linear;
+}
+
+body.show-error .error {
+    opacity: 1;
+}
+
+.app > .list-item {
+    width: 100%;
+    list-style: none;
+}
+
+.list-item > li {
+    font-size: 1.4rem;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.list-item > li > a {
+    color: #666;
+    text-decoration: none;
+    transition: .3s color linear;
+}
+
+.list-item > li > a:hover {
+    color: var(--color-primary);
+}
+
+.list-item > li > img {
     width: 80px;
     float: left;
     margin-right: 10px;
 }
 
-strong {
+.list-item > li > strong {
     font-size: 16px;
 }
 
-p {
+.list-item > li > p {
     font-size: 14px;
     margin: 5px 0;
+}
+
+/**
+* Estilos do Footer
+*
+* @footer
+*/
+
+.footer {
+    text-align: center;
+    color: var(--color-primary);
+    font-size: 1.4rem;
 }
